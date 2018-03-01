@@ -145,9 +145,7 @@ public:
 
                 int x = 0, y = 0;
                 x = num[i];
-
                 y = B.num[j];
-
 
                 //saveNum = (num[i] * num[j]) + carry;
                 saveNum = (x * y) + carry;
@@ -200,16 +198,15 @@ public:
     // Otherwise, figure out how to call multiply as many times as need
     // to obtain the vector to the power of n
     LargeInteger power(int n){
-        LargeInteger power;
-        int sum;
+        // Initializing power vector to 1 which is the first number to multiply by
+        //
+        LargeInteger power("1");
         int i;
 
-        if(n == 0){
-            num.push_back(1);
-        }
+        //if(n == 0) return power;
 
         for(i = 1; i <= n; i++){
-
+                power = power.multiply(*this);
         }
 
         return power;
@@ -220,8 +217,13 @@ public:
 //Convert large int to string
 
     LargeInteger toString() const{
-        LargeInteger num;
-            return num;
+        int i;
+        string stringNum = "";
+        string space = " ";
+        for (i = 0; i <= num.size() -1; i++){
+            stringNum = (char)num[i] + '0';
+            stringNum = space + stringNum;        }
+        return stringNum;
     }
 
 /**********************************************************************************************************************/
@@ -231,26 +233,28 @@ public:
 
 int main(){
 
-    LargeInteger A,B,C,D,E("2"), F;
+    LargeInteger A,B,C,D,E("8"),F;
     string s;
-    cout << "Enter in the first number: ";
-    cin >> s;
-    A = LargeInteger(s);
 
-    cout << "Enter in the first number: ";
-    cin >> s;
-    B = LargeInteger(s);
 
-    //C = A.add(B);
-    //D = A.multiply(B);
-    F = E.power(0);
-    cout << "The power of " << E << " is " << F.toString() << endl;
+//    cout << "Enter in the first number: ";
+//    cin >> s;
+//    A = LargeInteger(s);
+//
+//    cout << "Enter in the first number: ";
+//    cin >> s;
+//    B = LargeInteger(s);
+//
+//    C = A.add(B);
+//    C.print();
+//
+//
+//    D = A.multiply(B);
+//    D.print();
 
-    A.print();
-    B.print();
-    C.print();
-    D.print();
-    //cout << F.toString() << endl;
+    F = E.power(8);
+    F.toString();
+
 
   return 0;
 }
